@@ -1,0 +1,63 @@
+<!-- Modal-->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="modalCreateTask" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Создание задачи</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+
+            <div class="modal-body">
+
+                <form class="row g-3" method="post" action="/newTask" id="newTask">
+                    <div class="col-12">
+                        <!--        Проект-->
+                        <div class="form-floating">
+                            <select th:each="project : ${project}" class="form-select" id="project" name="project" aria-label="Выберите проект">
+                                <option selected></option>
+                                <option  th:utext="${project.name}" th:value="${project.id}">One</option>
+
+                            </select>
+                            <label for="project">Проект</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <!--        Тип задачи-->
+                        <div class="form-floating">
+                            <select  class="form-select" id="typeTask" aria-label="Выберите тип задачи">
+                                <option selected></option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                            <label for="typeTask">Тип задачи</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="title" class="form-label">Заголовок</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Введите значение">
+                    </div>
+                    <div class="col-12">
+                        <label for="description" class="form-label">Описание</label>
+                        <input type="text" class="form-control" id="description" name="description" placeholder="Введите значение">
+                    </div>
+
+
+
+                </form>
+
+            </div>
+
+
+
+
+
+            <div class="modal-footer">
+                <button class="btn btn-text-primary me-2" type="button" data-bs-dismiss="modal">Закрыть</button>
+                <button class="btn btn-text-primary" form="newTask" type="submit">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>

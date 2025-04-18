@@ -1,0 +1,52 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="tableListTask">
+  <main>
+    <div class="container-fluid px-4">
+      <!--      <h1 class="mt-4">Список задач</h1>-->
+      <!--      <ol class="breadcrumb mb-4">-->
+      <!--        <li class="breadcrumb-item active">Dashboard</li>-->
+      <!--      </ol>-->
+      <h3 class="mt-4">Список задач</h3>
+      <!-- Button that triggers the modal dialog-->
+      <button style="margin-bottom: 15px;" class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Создать задачу</button>
+
+      <!-- Modal-->
+      <div th:replace="~{main/pages/task/modalCreateTask :: modalCreateTask}" ></div>
+
+
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th></th>
+          <th>№</th>
+          <th>Задача</th>
+          <th>Статус</th>
+          <th>Дедлайн</th>
+          <th>Время</th>
+          <th>Проект</th>
+          <th>Приоритет</th>
+          <th>Планируется</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        <tr th:each="task : ${task}">
+          <td th:utext="${task.id}">id</td>
+          <!--              <td>id</td>-->
+          <td><a th:href="@{'/Task-{taskName}'(taskName=${task.name})}" th:utext="${task.name}"></a></td>
+          <td th:utext="${task.description}">Description</td>
+          <td th:utext="${task.project}">Project</td>
+          <td>2011/04/25</td>
+          <td>$320,800</td>
+          <td><a th:href="@{'/deleteTask'(taskName=${task.name})}"><i class="bi bi-trash"></i></a></td>
+
+        </tr>
+
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </main>
+</div>
