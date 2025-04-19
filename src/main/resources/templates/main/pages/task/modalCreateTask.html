@@ -13,37 +13,44 @@
                 <form class="row g-3" method="post" action="/newTask" id="newTask">
                     <div class="col-12">
                         <!--        Проект-->
-                        <div class="form-floating">
-                            <select th:each="project : ${project}" class="form-select" id="project" name="project" aria-label="Выберите проект">
-                                <option selected></option>
-                                <option  th:utext="${project.name}" th:value="${project.id}">One</option>
+<!--                        <div class="form-floating">-->
+<!--                            <select th:each="project : ${project}" class="form-select" id="project" name="project" aria-label="Выберите проект">-->
+<!--                                <option selected></option>-->
+<!--                                <option  th:utext="${project.name}" th:value="${project.id}">One</option>-->
 
-                            </select>
-                            <label for="project">Проект</label>
-                        </div>
+<!--                            </select>-->
+<!--                            <label for="project">Проект</label>-->
+<!--                        </div>-->
                     </div>
                     <div class="col-12">
                         <!--        Тип задачи-->
-                        <div class="form-floating">
-                            <select  class="form-select" id="typeTask" aria-label="Выберите тип задачи">
-                                <option selected></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                            <label for="typeTask">Тип задачи</label>
-                        </div>
+<!--                        <div class="form-floating">-->
+<!--                            <select  class="form-select" id="typeTask" aria-label="Выберите тип задачи">-->
+<!--                                <option selected></option>-->
+<!--                                <option value="1">One</option>-->
+<!--                                <option value="2">Two</option>-->
+<!--                                <option value="3">Three</option>-->
+<!--                            </select>-->
+<!--                            <label for="typeTask">Тип задачи</label>-->
+<!--                        </div>-->
                     </div>
 
                     <div class="col-12">
-                        <label for="title" class="form-label">Заголовок</label>
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Введите значение">
+                        <label for="name" class="form-label">Заголовок</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Введите значение">
                     </div>
                     <div class="col-12">
                         <label for="description" class="form-label">Описание</label>
                         <input type="text" class="form-control" id="description" name="description" placeholder="Введите значение">
                     </div>
-
+                    <div class="col-12">
+                        <label for="dueDateTime">Дедлайн</label>
+                        <input type="datetime-local" class="form-control" id="dueDateTime" name="dueDateTime">
+                    </div>
+                    <div class="col-12">
+                        <label for="time" class="form-label">Требуемое время на исполнение</label>
+                        <input type="text" class="form-control" id="time" name="time" placeholder="Введите значение">
+                    </div>
 
 
                 </form>

@@ -13,7 +13,7 @@
       <div th:replace="~{main/pages/task/modalCreateTask :: modalCreateTask}" ></div>
 
 
-      <table class="table table-bordered table-hover">
+      <table id="taskTable" class="table table-bordered table-hover">
         <thead>
         <tr>
           <th></th>
@@ -24,24 +24,9 @@
           <th>Время</th>
           <th>Проект</th>
           <th>Приоритет</th>
-          <th>Планируется</th>
         </tr>
         </thead>
-        <tbody>
-
-
-        <tr th:each="task : ${task}">
-          <td th:utext="${task.id}">id</td>
-          <!--              <td>id</td>-->
-          <td><a th:href="@{'/Task-{taskName}'(taskName=${task.name})}" th:utext="${task.name}"></a></td>
-          <td th:utext="${task.description}">Description</td>
-          <td th:utext="${task.project}">Project</td>
-          <td>2011/04/25</td>
-          <td>$320,800</td>
-          <td><a th:href="@{'/deleteTask'(taskName=${task.name})}"><i class="bi bi-trash"></i></a></td>
-
-        </tr>
-
+        <tbody id="taskTableBody">
 
         </tbody>
       </table>
@@ -49,4 +34,51 @@
 
     </div>
   </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+
+    async function loadTable() {
+        const response = await fetch("/api/findAllTask");
+        const tasks = await response.json();
+
+<!--        const responseStatus = await fetch("/api/statuses");-->
+<!--        const statuses = await responseStatus.json();-->
+
+        const tbody = $('#taskTable tbody');
+        tbody.empty(); // Очистка текущего содержимого
+
+        tasks.forEach((task, index) => {
+<!--            const status = statuses.find(s => s.id === task.status.id);-->
+
+            const row = `
+                <tr>
+
+                    <td><input type="checkbox" class="task-checkbox"></td>
+                    <td>${index + 1}</td>
+                    <td>${task.name}</td>
+                    <td></td>
+                    <td>${task.dueDateTime}</td>
+                    <td>${task.time}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+            `;
+            tbody.append(row);
+        });
+    }
+
+    $(document).ready(function() {
+        loadTable();
+    });
+  </script>
+
+
 </div>
