@@ -1,0 +1,53 @@
+<!-- Modal-->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="modalCreateEvent" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Создание события</h5>
+        <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body">
+
+        <form class="row g-3" method="post" action="/newEvent" id="newEvent">
+          <div class="col-12">
+
+          </div>
+          <div class="col-12">
+
+          </div>
+
+          <div class="col-12">
+            <label for="name" class="form-label">Заголовок</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Введите значение">
+          </div>
+          <div class="col-12">
+            <label for="description" class="form-label">Описание</label>
+            <input type="text" class="form-control" id="description" name="description" placeholder="Введите значение">
+          </div>
+          <div class="col-12">
+            <label for="dateTimeEvent">Дата наступления события</label>
+            <input type="datetime-local" class="form-control" id="dateTimeEvent" name="dateTimeEvent">
+          </div>
+          <div class="col-12">
+            <label for="time" class="form-label">Продолжительность события</label>
+            <input type="text" class="form-control" id="time" name="time" placeholder="Введите значение">
+          </div>
+
+
+        </form>
+
+      </div>
+
+
+
+
+
+      <div class="modal-footer">
+        <button class="btn btn-text-primary me-2" type="button" data-bs-dismiss="modal">Закрыть</button>
+        <button class="btn btn-text-primary" form="newEvent" type="submit">Сохранить</button>
+      </div>
+    </div>
+  </div>
+</div>

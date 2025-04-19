@@ -1,0 +1,76 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="tableEvent">
+  <main>
+    <div class="container-fluid px-4">
+      <!--      <h1 class="mt-4">Список задач</h1>-->
+      <!--      <ol class="breadcrumb mb-4">-->
+      <!--        <li class="breadcrumb-item active">Dashboard</li>-->
+      <!--      </ol>-->
+      <h3 class="mt-4">События</h3>
+      <!-- Button that triggers the modal dialog-->
+      <button style="margin-bottom: 15px;" class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Создать событие</button>
+
+      <!-- Modal-->
+      <div th:replace="~{main/pages/event/modalCreateEvent :: modalCreateEvent}" ></div>
+
+
+      <table id="eventTable" class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Время</th>
+          <th>ПН</th>
+          <th>ВТ</th>
+          <th>СР</th>
+          <th>ЧТ</th>
+          <th>ПТ</th>
+        </tr>
+        </thead>
+        <tbody id="eventTableBody">
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+
+    async function loadTable() {
+        const response = await fetch("/api/findAllEvent");
+        const events = await response.json();
+
+        const tbody = $('#eventTable tbody');
+        tbody.empty(); // Очистка текущего содержимого
+
+        events.forEach((event, index) => {
+
+            const row = `
+                <tr>
+
+                    <td>${event.name}</td>
+                    <td>${event.dateTimeEvent}</td>
+                    <td>${event.time}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+            `;
+            tbody.append(row);
+        });
+    }
+
+    $(document).ready(function() {
+        loadTable();
+    });
+  </script>
+
+
+</div>
